@@ -6,17 +6,19 @@ import threading
 app = Flask(__name__)
 
 t = threading.Thread(target=start_consuming)
+t.start()
 
 print(channel.is_closed)
-if channel.is_closed:
-    t.start()
 
 
 @app.route('/')
 def hello():
-    body = {'message': 'hello world from producer'}
-    publish('message-text', body)
-    return '¡Hola, bienvenido al microservico con Flask!'
+    if channel.is_closed:
+        return 'channel close'
+    if channel.is_open:
+        body = {'message': 'hello world from producer'}
+        publish('message-text', body)
+        return '¡Hola, bienvenido al microservico con Flask!'
 
 
 @app.route('/welcome/')

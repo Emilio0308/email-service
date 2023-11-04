@@ -58,6 +58,7 @@ channel.queue_declare(queue='email-service')
 
 
 def send_email(ch, method, properties, body):
+    print('is channel close', channel.is_closed)
 
     data = json.loads(body)
     if properties.content_type == 'send-message':
@@ -71,19 +72,21 @@ def send_email(ch, method, properties, body):
         email_message['From'] = email_sender
         email_message['To'] = email_receiver
         email_message['Subject'] = subject
-        email_message.add_alternative(email_html, subtype='html')
-        # email_message.set_content(message)
+        # email_message.add_alternative(email_html, subtype='html')
+        email_message.set_content(message)
 
         context = ssl.create_default_context()
         print(context)
         with smtplib.SMTP_SSL("smtp.gmail.com", 465, context=context) as smtp:
             smtp.login(email_sender, password)
-            smtp.send_message(email_message)
-            # smtp.sendmail(email_sender, email_receiver,
-            #               email_message.as_string())
+            # smtp.send_message(email_message)
+            smtp.sendmail(email_sender, email_receiver,
+                          email_message.as_string())
 
     if properties.content_type == 'message-text':
         print('mensaje recibido en la cola message-text', data)
+
+    print('is channel close', channel.is_closed)
 
 
 channel.basic_consume(

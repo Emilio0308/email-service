@@ -13,6 +13,7 @@ channel = connection.channel()
 
 
 def publish(method, body):
+    print(channel.is_closed)
     properties = pika.BasicProperties(method)
     print(properties)
     msg_body = json.dumps(body)
