@@ -94,5 +94,7 @@ print('consumer iniciado')
 
 # channel.start_consuming()
 # channel.close()
+
+
 def start_consuming():
     channel.start_consuming()

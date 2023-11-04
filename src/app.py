@@ -5,9 +5,11 @@ import threading
 
 app = Flask(__name__)
 
-
 t = threading.Thread(target=start_consuming)
-t.start()
+
+print(channel.is_closed)
+if channel.is_closed:
+    t.start()
 
 
 @app.route('/')
@@ -19,7 +21,7 @@ def hello():
 
 @app.route('/welcome/')
 def welcome():
-    return '¡bienvenido al microservico con Flask!'
+    return '¡bienvenido al microservico email con Flask!'
 
 
 if __name__ == '__main__':
