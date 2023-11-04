@@ -1,6 +1,10 @@
 import pika
 import json
-amqpUrl = 'amqps://paqrnanu:dlbW9DwIGgSOTd4TBF2bZLAWoTX2lRUX@vulture.rmq.cloudamqp.com/paqrnanu'
+import os
+from dotenv import load_dotenv
+load_dotenv()
+
+amqpUrl = os.getenv('AMQPURL')
 
 params = pika.URLParameters(amqpUrl)
 connection = pika.BlockingConnection(params)

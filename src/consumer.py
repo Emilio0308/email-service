@@ -46,7 +46,6 @@ email_html = """
 """
 
 
-# amqpUrl = 'amqps://paqrnanu:dlbW9DwIGgSOTd4TBF2bZLAWoTX2lRUX@vulture.rmq.cloudamqp.com/paqrnanu'
 amqpUrl = os.getenv('AMQPURL')
 
 
