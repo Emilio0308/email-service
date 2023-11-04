@@ -83,7 +83,7 @@ def send_email(ch, method, properties, body):
             #               email_message.as_string())
 
     if properties.content_type == 'message-text':
-        print(data)
+        print('mensaje recibido en la cola message-text', data)
 
 
 channel.basic_consume(

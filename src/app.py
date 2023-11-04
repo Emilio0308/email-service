@@ -12,13 +12,13 @@ t.start()
 
 @app.route('/')
 def hello():
-    body = {'message': 'hello word from producer'}
+    body = {'message': 'hello world from producer'}
     publish('message-text', body)
     return '¡Hola, bienvenido al microservico con Flask!'
 
 
-@app.route('/home/')
-def hello():
+@app.route('/welcome/')
+def welcome():
     return '¡bienvenido al microservico con Flask!'
 
 
