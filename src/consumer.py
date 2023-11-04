@@ -82,6 +82,9 @@ def send_email(ch, method, properties, body):
             # smtp.sendmail(email_sender, email_receiver,
             #               email_message.as_string())
 
+    if properties.content_type == 'message-text':
+        print(data)
+
 
 channel.basic_consume(
     'email-service', on_message_callback=send_email, auto_ack=True)

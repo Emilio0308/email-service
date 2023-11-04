@@ -17,5 +17,10 @@ def hello():
     return '¡Hola, bienvenido al microservico con Flask!'
 
 
+@app.route('/home/')
+def hello():
+    return '¡bienvenido al microservico con Flask!'
+
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=7002, debug=True)
